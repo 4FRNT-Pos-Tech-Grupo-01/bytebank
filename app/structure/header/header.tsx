@@ -1,5 +1,5 @@
 import { ICta, ICommonLink } from '@/types/types'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Link from 'next/link'
 
@@ -7,8 +7,8 @@ import Logo from '@/assets/icons/logo.svg'
 import LogoMd from '@/assets/icons/logo-md.svg'
 import NavMenu from './nav-menu'
 import Hamburger from './hamburger'
-import { Modal } from '@/components/modal/Modal';
-import { LoginForm, RegisterForm } from '@/components/auth';
+import useStateController from '@/hooks/use-state-controller'
+import { getScrollPosition } from '@/utils/scroll-position'
 
 export interface IMenu {
   loggedOutMenu: ICommonLink[]
@@ -20,11 +20,10 @@ export interface IMenu {
 }
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false)
   const [isProfileMenuActive, setIsProfileMenuActive] = useState<boolean>(false)
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false)
+  const {authStatus} = useStateController()
 
   const closeMenu = useCallback(() => {
     setIsMenuActive(false)
@@ -38,9 +37,10 @@ const Header = () => {
     setIsProfileMenuActive(false)
   }, [])
 
-  const logIn = useCallback(() => {
-    setIsLoggedIn(true)
-    setShowLoginModal(false);
+  useEffect(() => {
+    getScrollPosition((scrollPosition) => {
+      setIsScrolled(scrollPosition > 0)
+    })
   }, [])
 
   // Handlers para abrir as modais
@@ -50,14 +50,20 @@ const Header = () => {
   const handleCloseRegister = () => setShowRegisterModal(false);
 
   return (
-    <header className={twMerge('sticky top-0 h-24 flex items-center justify-center', isLoggedIn ? 'text-white bg-green-dark' : 'text-green bg-black')}>
+    <header
+      className={twMerge(
+        'sticky top-0 left-0 z-50 flex items-center justify-center transition-all duration-300',
+        authStatus ? 'text-white bg-green-dark' : 'text-green bg-black',
+        isScrolled ? 'h-20' : 'h-24'
+      )}
+    >
       <div className='relative container flex items-center justify-between md:gap-14 lg:gap-[4.5rem]'>
         <Hamburger
           setIsMenuActive={setIsMenuActive}
           isMenuActive={isMenuActive}
           className='md:hidden'
         />
-        {!isLoggedIn && (
+        {!authStatus && (
           <Link href='/' target='_self' className='opacity-100 hover:opacity-70 transition-opacity duration-200'>
             <Logo className='md:hidden lg:block w-[9.125rem] h-8' />
             <LogoMd className='hidden md:block lg:hidden w-[1.625rem] h-[1.625rem]' />
@@ -66,10 +72,8 @@ const Header = () => {
         <NavMenu
           closeMenu={closeMenu}
           closeProfileMenu={closeProfileMenu}
-          isLoggedIn={isLoggedIn}
           isMenuActive={isMenuActive}
           isProfileMenuActive={isProfileMenuActive}
-          logIn={handleOpenLogin} // Abre modal de login
           openProfileMenu={openProfileMenu}
           openRegister={handleOpenRegister} // Abre modal de registro
         />

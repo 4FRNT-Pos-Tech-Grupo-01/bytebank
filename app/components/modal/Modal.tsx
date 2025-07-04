@@ -1,66 +1,61 @@
-import { ReactNode, useEffect, useRef } from 'react';
+import useStateController from '@/hooks/use-state-controller'
+import { LoginForm, RegisterForm } from '../auth'
 
-interface ModalProps {
-  children: ReactNode;
-  isOpen: boolean;
-  onClose: () => void;
-  title?: string;
-}
+import Close from '@/assets/icons/close.svg'
 
-export function Modal({ children, isOpen, onClose }: ModalProps) {
-  const modalRef = useRef<HTMLDivElement>(null);
+const Modal = () => {
+  const {
+    selectedModal,
+    setCurrentAuthModal,
+    authModalStatus,
+    setIsAuthModalOpen,
+    setIsLoggedIn
+  } = useStateController()
 
-  useEffect(() => {
-    if (isOpen && modalRef.current) {
-      modalRef.current.focus();
-    }
-  }, [isOpen]);
-
-  if (!isOpen) return null;
+  if (!authModalStatus) return null
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 font-sans overflow-y-auto py-6 px-4"
-      onClick={onClose}
+      className="fixed inset-0 z-[9999] flex justify-center bg-[#00000080] overflow-y-auto"
     >
       <div
-        ref={modalRef}
-        role="dialog"
-        className="relative bg-white rounded-2xl w-full max-w-md shadow-2xl animate-fadeIn focus:outline-none overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
-        tabIndex={-1}
+        className="relative bg-gray-light lg:rounded-2xl w-full lg:w-[49.5rem] h-fit shadow-2xl animate-showup lg:my-20"
       >
-        {/* Botão de fechar */}
         <button
-          aria-label="Fechar modal"
-          onClick={onClose}
+          aria-label="Close modal"
+          onClick={() => setIsAuthModalOpen(false)}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl z-10 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
         >
-          ✕
+          <Close className='w-4 h-4' />
         </button>
-
-        {/* Conteúdo rolável */}
-        <div className="max-h-[90vh] overflow-y-auto px-6 py-8">
-          {children}
+        <div className="px-6 py-8">
+          {selectedModal === 'login' ? (
+            <>
+              <LoginForm onSubmit={() => {
+                setIsLoggedIn(true)
+                setIsAuthModalOpen(false)
+              }} />
+              <button
+                className="text-sm text-green underline"
+                onClick={() => {
+                  setCurrentAuthModal('subscribe')
+                }}
+              >
+                Não tem conta? Cadastre-se
+              </button>
+            </>
+          ) : (
+            <>
+              <RegisterForm onSubmit={() => setCurrentAuthModal('login')} />
+              <button className="text-sm text-green underline" onClick={() => setCurrentAuthModal('login') }>
+                Já tem conta? Faça login
+              </button>
+            </>
+          )}
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 0.2s ease-out;
-        }
-      `}</style>
     </div>
-  );
+  )
 }
+
+export default Modal

@@ -1,8 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { bankStatementData } from '@/data/global-data'
-import useLocalStorage from '@/hooks/useLocalStorage'
+import useLocalStorage from '@/hooks/use-local-storage'
 import { formatDate, formatMonth } from '@/utils/date'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface IBankStatementItem {
   date: string
@@ -10,24 +9,25 @@ interface IBankStatementItem {
   type: 'deposit' | 'transfer'
 }
 
-interface IBankStatement {
+export interface IBankStatement {
   title: string
   transactions: IBankStatementItem[]
 }
 
 const BankStatement = () => {
   const { title, transactions } = bankStatementData as IBankStatement
-  const [storedValue, setValue, getValue] = useLocalStorage('extract-data', transactions)
+  const { storedValue } = useLocalStorage('statement', transactions)
+  const [currentStatement, setCurrentStatement] = useState<IBankStatementItem[]>(storedValue)
 
   useEffect(() => {
-    getValue()
+    setCurrentStatement(storedValue)
   }, [storedValue])
 
   return (
     <section className='lg:col-span-3 rounded-lg bg-white px-6 py-8'>
       <h2 className='text-[1.5625rem] font-semibold'>{title}</h2>
       <ul>
-        {storedValue.map((transaction, index) => (
+        {currentStatement.map((transaction, index) => (
           <li
             key={`transaction-${index}`}
             className='flex flex-col gap-2 pt-6 pb-2 border-b border-green'

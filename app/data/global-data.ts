@@ -1,10 +1,20 @@
 // ACCOUNT
 
 export const accountData = {
+  title: 'Minha conta',
+  nameLabel: 'Nome',
   firstName: 'Joana',
   lastName: 'da Silva Oliveira',
+  emailLabel: 'Email',
+  email: 'joanadasilvaoliveira@email.com.br',
+  passLabel: 'Senha',
+  imageAlt: 'Interface de transações financeiras com elementos gráficos em blocos nos cantos inferior esquerdo e superior direito',
   balance: 2500,
-}
+  cta: {
+    text: 'Salvar alterações',
+    variant: 'orange',
+  },
+};
 
 // HEADER
 
@@ -12,14 +22,14 @@ export const headerData = {
   loggedOutMenu: [
     {
       text: 'Sobre',
-      url: '/#sobre',
-      blank: false
+      url: '/#about',
+      blank: false,
     },
     {
       text: 'Serviços',
-      url: '/services',
-      blank: false
-    }
+      url: '/#services',
+      blank: false,
+    },
   ],
   loggedInMenu: [
     {
@@ -44,7 +54,7 @@ export const headerData = {
     },
   ],
   subscribeCta: {
-    text: 'Abrir minha conta',
+    text: 'Abrir conta',
     variant: 'green',
   },
   loginCta: {
@@ -54,21 +64,21 @@ export const headerData = {
   profileMenu: [
     {
       text: 'Minha conta',
-      url: '/minha-conta',
+      url: '/account',
       blank: false,
     },
     {
       text: 'Configurações',
-      url: '/minha-conta',
+      url: '/account',
       blank: false,
     },
     {
       text: 'Sair',
       url: '/',
       blank: false,
-    }
+    },
   ],
-}
+};
 
 // FOOTER
 
@@ -77,59 +87,59 @@ export const footerData = {
   servicesLinks: [
     {
       text: 'Conta corrente',
-      url: '/services',
-      blank: false
+      url: '/',
+      blank: false,
     },
     {
       text: 'Conta PJ',
-      url: '/services',
-      blank: false
+      url: '/',
+      blank: false,
     },
     {
       text: 'Cartão de Crédito',
-      url: '/services',
-      blank: false
-    }
+      url: '/',
+      blank: false,
+    },
   ],
   contactTitle: 'Contato',
   contactLinks: [
     {
       text: '0800 004 250 08',
       url: 'tel:080000425008',
-      blank: true
+      blank: true,
     },
     {
       text: 'meajuda@bytebank.com.br',
       url: 'mailto:meajuda@bytebank.com.br',
-      blank: true
+      blank: true,
     },
     {
       text: 'ouvidoria@bytebank.com.br',
       url: 'mailto:ouvidoria@bytebank.com.br',
-      blank: true
-    }
+      blank: true,
+    },
   ],
   copyrightTitle: 'Desenvolvido por Alura',
   socialsLinks: [
     {
       type: 'instagram',
       url: 'https://www.instagram.com/bytebank/',
-      blank: true
+      blank: true,
     },
     {
       type: 'whatsapp',
       url: 'https://api.whatsapp.com/send?phone=5500000000000',
-      blank: true
+      blank: true,
     },
     {
       type: 'youtube',
       url: 'https://www.youtube.com/bytebank',
-      blank: true
-    }
+      blank: true,
+    },
   ],
-}
+};
 
-// EXTRACT
+// BANK STATEMENT
 
 export const bankStatementData = {
   title: 'Extrato',
@@ -154,5 +164,94 @@ export const bankStatementData = {
       amount: 500,
       type: 'transfer',
     },
-  ]
-}
+  ],
+};
+
+// 404
+
+export const notFoundData = {
+  title: 'Ops! Não encontramos a página... ',
+  description:
+    'E olha que exploramos o universo procurando por ela! Que tal voltar e tentar novamente?',
+  cta: {
+    text: 'Voltar para o início',
+    url: '/',
+    blank: false,
+  },
+};
+
+// HOME LOGGED-OUT
+
+export const loggedOutData = {
+  description:
+    'Experimente mais liberdade no controle da sua vida financeira. Crie sua conta com a gente!',
+  subtitle: 'Vantagens do nosso banco:',
+  features: [
+    {
+      icon: 'box',
+      title: 'Conta e cartão gratuitos',
+      description:
+        'Isso mesmo, nossa conta é digital, sem custo fixo e mais que isso: sem tarifa de manutenção.',
+    },
+    {
+      icon: 'money',
+      title: 'Saques sem custo',
+      description:
+        'Você pode sacar gratuitamente 4x por mês de qualquer Banco 24h.',
+    },
+    {
+      icon: 'star',
+      title: 'Programa de pontos',
+      description:
+        'Você pode acumular pontos com suas compras no crédito sem pagar mensalidade!',
+    },
+    {
+      icon: 'devices',
+      title: 'Seguro Dispositivos',
+      description:
+        'Seus dispositivos móveis (computador e laptop) protegidos por uma mensalidade simbólica.',
+    },
+  ],
+};
+
+// TRANSACTIONS
+
+export const TransactionsData = {
+  title: 'Nova transação',
+  placeholderSelect: 'Selecione o tipo de transação',
+  placeholderInput: '00.00',
+  transactionType: [
+    {
+      label: 'Câmbio de Moeda',
+      value: 'exchange',
+    },
+    {
+      label: 'DOC/TED',
+      value: 'doc-and-ted',
+    },
+    {
+      label: 'Empréstimo e Financiamento',
+      value: 'loan-and-financing',
+    },
+  ],
+  imageAlt:
+    'Imagem de mulher com cartão de crédito. A mulher está segurando o cartão com a mão esquerda e está olhando para o lado direito. A imagem está em um fundo cinza.',
+};
+
+// Transactions
+
+export const InvestmentsData = {
+  title: 'Investimentos',
+  total: 50000,
+  sectionTitle: 'Estatítiscas',
+  rates: [
+    {
+      title: 'Renda Fixa',
+      price: 36000,
+    },
+    {
+      title: 'Renda Variável',
+      price: 14000,
+    },
+  ],
+};

@@ -5,10 +5,12 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   error?: string;
   label?: string;
+  id: string;
+  labelStyle?:string;
 }
 
 const inputVariants = tv({
-  base: "w-full bg-gray-50 border rounded-lg px-4 py-3 text-sm placeholder-gray-400 text-gray-700 focus:outline-none focus:ring-2 focus:border-transparent transition-all",
+  base: "w-full bg-white border rounded-lg px-4 py-3 text-sm placeholder-gray-700 text-gray-700 focus:outline-none focus:ring-2 focus:border-transparent transition-all",
   variants: {
     error: {
       true: "border-[var(--color-error)] focus:ring-[var(--color-error)]",
@@ -17,16 +19,17 @@ const inputVariants = tv({
   },
 });
 
-const Input = ({ className, error, label, ...props }: InputProps) => {
+const Input = ({ className, error, label, id, labelStyle, ...props }: InputProps) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 w-full">
       {label && (
-        <label className="block text-sm font-bold text-gray-700">
+        <label className={`block text-sm font-bold text-gray-700 ${labelStyle}`}>
           {label}
         </label>
       )}
       <input
         className={`${inputVariants({ error: !!error })} ${className ?? ""}`}
+        id={id}
         {...props}
       />
 

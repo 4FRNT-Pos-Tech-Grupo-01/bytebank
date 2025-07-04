@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ICta } from '@/types/types'
 import React from 'react'
+import { twMerge } from 'tailwind-merge'
 import { tv } from 'tailwind-variants'
 
 const ctaVariants = tv({
@@ -17,13 +17,19 @@ const ctaVariants = tv({
   }
 })
 
-interface Properties extends ICta {
-  onClick?: any
+interface ICtaProperties extends ICta,
+React.ButtonHTMLAttributes<HTMLButtonElement> {
+  onClick?: () => void
 }
 
-const Cta: React.FC<Properties> = ({text, variant, onClick}) => {
+const Cta: React.FC<ICtaProperties> = ({className = '', text, variant = 'green', onClick, ...props}) => {
   return (
-    <button className={ctaVariants({variant})} onClick={onClick}>
+    <button
+      className={twMerge( className, ctaVariants({variant}))}
+      aria-label={text}
+      onClick={onClick}
+      {...props}
+    >
       {text}
     </button>
   )

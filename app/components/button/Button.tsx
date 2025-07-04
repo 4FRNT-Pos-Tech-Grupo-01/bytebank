@@ -42,7 +42,7 @@ export const Button = ({
     link: `text-[var(--color-green)] underline bg-transparent border-none hover:text-green-700 transition-colors cursor-pointer`
   }[variant];
 
-  const widthClasses = fullWidth ? 'w-full' : 'w-[144px]';
+  const widthClasses = fullWidth ? 'w-full' : 'w-fit';
   const alignClasses = centered ? 'mx-auto block' : '';
 
   return (

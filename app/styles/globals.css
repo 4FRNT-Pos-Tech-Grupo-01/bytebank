@@ -16,13 +16,14 @@
   --color-green: #47A138;
   --color-green-light: #E4EDE3;
   --color-green-dark: #004D61;
+  --color-blue-light: #438B9D;
 
   --color-gray: #DEE9EA;
   --color-gray-light: #F8F8F8;
   --color-gray-dark: #444444;
-  
-  --color-orange: #FF5031; 
-  
+
+  --color-orange: #FF5031;
+
    --color-error: #BF1313;
 
   /* COLORS - VARIABLES */
@@ -54,7 +55,7 @@
   --color-current-input-border: var(--color-input-border);
   --color-current-input-placeholder: var(--color-input-placeholder);
   --color-current-input-text: var(--color-input-text);
-  
+
   /* COLORS - BACKGROUND */
   --color-background-service-options: var(--color-gray-services-bg);
   --color-background-service-option: var(--color-white-service-bg);
@@ -71,14 +72,15 @@
   --breakpoint-3xl: 1920px;
 
   /* FONT */
-  --font-votorantim: var(--font-inter);
+  --font-inter: var(--font-inter);
 
   /* FONT SIZE */
-  --text-1: 1rem;
-  --text-2.5xl: 1.625rem;
-  --text-5.5xl: 3.25rem;
-  --text-6.5xl: 4rem;
-  --text-7.5xl: 5rem;
+  --text-1: 1rem; /* 16px */
+  --text-2: 1.25rem; /* 20px */
+  --text-2.5xl: 1.625rem; /* 26px */
+  --text-5.5xl: 3.25rem; /* 52px */
+  --text-6.5xl: 4rem; /* 64px */
+  --text-7.5xl: 5rem; /* 80px*/
 
   /* TRANSITION */
   --default-transition-timing-function: cubic-bezier(0, 0, 0.4, 1);
@@ -90,6 +92,7 @@
 
   /* ANIMATION */
   --animate-fadein: fadeIn 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
+  --animate-showup: showUp 0.2s ease-out forwards;
 
   @keyframes fadeIn {
     0% {
@@ -97,6 +100,17 @@
     }
     100% {
       opacity: 100;
+    }
+  }
+
+  @keyframes showUp {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 }

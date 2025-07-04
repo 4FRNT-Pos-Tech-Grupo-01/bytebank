@@ -10,7 +10,7 @@ const AsideNav = () => {
   const router = useRouter()
 
   return (
-    <aside className='hidden md:block lg:col-span-2 rounded-lg lg:bg-white lg:min-h-[58.75rem]'>
+    <aside className='hidden md:block lg:col-span-2 rounded-lg lg:bg-white'>
       <nav className='lg:flex lg:justify-center'>
         <ul className='flex items-center lg:flex-col justify-between lg:justify-start lg:w-fit py-4'>
           {loggedInMenu.map((item, index) => (

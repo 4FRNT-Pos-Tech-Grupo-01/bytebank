@@ -7,14 +7,14 @@ import { twMerge } from 'tailwind-merge'
 import Avatar from '@/assets/icons/avatar.svg'
 import Close from '@/assets/icons/close.svg'
 import { accountData, headerData } from '@/data/global-data'
+import useStateController from '@/hooks/use-state-controller'
+import { useRouter } from 'next/router'
 
 interface Properties {
   closeMenu: () => void
   closeProfileMenu: () => void
-  isLoggedIn: boolean
   isMenuActive: boolean
   isProfileMenuActive: boolean
-  logIn: () => void
   openProfileMenu: () => void
   openRegister?: () => void // nova prop
 }
@@ -22,13 +22,11 @@ interface Properties {
 const NavMenu: React.FC<Properties> = ({
   closeMenu,
   closeProfileMenu,
-  isLoggedIn,
   isMenuActive,
   isProfileMenuActive,
-  logIn,
   openProfileMenu,
-  openRegister
 }) => {
+  const router = useRouter()
   const { firstName, lastName } = accountData
   const {
     loggedOutMenu,
@@ -37,11 +35,16 @@ const NavMenu: React.FC<Properties> = ({
     loginCta,
     subscribeCta,
   } = headerData as IMenu
-
+  const {
+    authStatus,
+    setCurrentAuthModal,
+    setIsAuthModalOpen,
+    setIsLoggedIn,
+  } = useStateController()
 
   return (
     <>
-      {isLoggedIn ? (
+      {authStatus ? (
         <>
           <div className='w-full flex items-center justify-end gap-4'>
             <span className='hidden md:block'>{`${firstName} ${lastName}`}</span>
@@ -81,16 +84,28 @@ const NavMenu: React.FC<Properties> = ({
               <Close className='w-4 h-4' />
             </button>
             <ul className='flex flex-col'>
-              {profileMenu.map((profileItem, index) => (
-                <li className='py-4 not-last:border-b border-white' key={`item-${index}`}>
+              {profileMenu.slice(0, 2).map((profileItem, index) => (
+                <li className='py-4 border-b border-white' key={`item-${index}`}>
                   <Link
                     className='block w-full text-lg text-center text-white' href={profileItem.url}
-                    onClick={closeMenu}
+                    onClick={closeProfileMenu}
                   >
                     {profileItem.text}
                   </Link>
                 </li>
               ))}
+              <li className='py-4'>
+                <button
+                  className='block w-full text-lg text-center text-white'
+                  onClick={() => {
+                    closeProfileMenu()
+                    setIsLoggedIn(false)
+                    router.push('/')
+                  }}
+                >
+                  {profileMenu[2].text}
+                </button>
+              </li>
             </ul>
           </nav>
         </>
@@ -117,8 +132,20 @@ const NavMenu: React.FC<Properties> = ({
             ))}
           </ul>
           <div className='hidden md:flex items-center md:gap-6' >
-            <Cta {...subscribeCta} onClick={openRegister} />
-            <Cta {...loginCta} onClick={logIn} />
+            <Cta
+              {...subscribeCta}
+              onClick={() => {
+                setIsAuthModalOpen(true)
+                setCurrentAuthModal('subscribe')
+              }}
+            />
+            <Cta
+              {...loginCta}
+              onClick={() => {
+                setIsAuthModalOpen(true)
+                setCurrentAuthModal('login')
+              }}
+            />
           </div>
         </nav>
       )}
