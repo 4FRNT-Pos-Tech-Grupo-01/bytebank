@@ -21,7 +21,9 @@ const Hamburger: React.FC<Props> = ({
         className
       )}
       onClick={() => setIsMenuActive(!isMenuActive)}
+      aria-label={isMenuActive ? 'Fechar menu' : 'Abrir menu'}
     >
+      <span className="sr-only">{isMenuActive ? 'Fechar menu' : 'Abrir menu'}</span>
       <div className="hamburger-box">
         <div className="hamburger-inner duration-500 transition-colors text-current" />
       </div>

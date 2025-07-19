@@ -22,7 +22,7 @@ const Modal = () => {
         className="relative bg-gray-light lg:rounded-2xl w-full lg:w-[49.5rem] h-fit shadow-2xl animate-showup lg:my-20"
       >
         <button
-          aria-label="Close modal"
+          aria-label="Fechar modal"
           onClick={() => setIsAuthModalOpen(false)}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl z-10 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
         >
@@ -40,6 +40,7 @@ const Modal = () => {
                 onClick={() => {
                   setCurrentAuthModal('subscribe')
                 }}
+                aria-label="Ir para formulário de cadastro"
               >
                 Não tem conta? Cadastre-se
               </button>
@@ -47,7 +48,11 @@ const Modal = () => {
           ) : (
             <>
               <RegisterForm onSubmit={() => setCurrentAuthModal('login')} />
-              <button className="text-sm text-green underline" onClick={() => setCurrentAuthModal('login') }>
+              <button 
+                className="text-sm text-green underline" 
+                onClick={() => setCurrentAuthModal('login')}
+                aria-label="Ir para formulário de login"
+              >
                 Já tem conta? Faça login
               </button>
             </>

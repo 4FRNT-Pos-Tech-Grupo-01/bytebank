@@ -66,6 +66,7 @@ const Header = () => {
         {!authStatus && (
           <Link href='/' target='_self' className='opacity-100 hover:opacity-70 transition-opacity duration-200'>
             <Logo className='md:hidden lg:block w-[9.125rem] h-8' />
+             <span className="sr-only">Ir para a página inicial</span>
             <LogoMd className='hidden md:block lg:hidden w-[1.625rem] h-[1.625rem]' />
           </Link>
         )}

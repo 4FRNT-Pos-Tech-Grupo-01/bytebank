@@ -17,9 +17,9 @@ const TransactionCard = () => {
 
   return (
     <TransactionsCardLayout>
-      <h5 className="font-bold text-white text-[25px] mb-6 text-center md:text-left z-2">
+      <h2 className="font-bold text-white text-[25px] mb-6 text-center md:text-left z-2">
         {title}
-      </h5>
+      </h2>
       <Graphism className='absolute bottom-0 left-0 w-[9rem] md:w-[11.25rem] h-auto' />
       <Graphism className='absolute top-0 right-0 w-[9rem] md:w-[11.25rem] h-auto rotate-180' />
       <TransactionForm
