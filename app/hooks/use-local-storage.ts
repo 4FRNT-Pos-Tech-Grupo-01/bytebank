@@ -7,11 +7,12 @@ function useLocalStorage<T>(key: string, initialValue: T) {
 
   useEffect(() => {
     try {
-      setValue(initialValue)
       const item = window.localStorage.getItem(key)
 
       if (item) {
         setStoredValue(JSON.parse(item))
+      } else {
+        setValue(initialValue)
       }
     } catch (error) {
       throw new Error("Não foi possível encontrar o valor no localStorage.")

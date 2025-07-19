@@ -9,22 +9,23 @@
   --color-current: currentColor;
 
   --color-black: #000000;
-  --color-white: #ffffff;
-  --color-white-service-bg: #f2f2f2;
-  --color-gray-services-bg: #cbcbcb;
+  --color-white: #FFFFFF;
 
   --color-green: #47A138;
   --color-green-light: #E4EDE3;
   --color-green-dark: #004D61;
+
   --color-blue-light: #438B9D;
 
-  --color-gray: #DEE9EA;
+  --color-gray-lightness: #F2F2F2;
   --color-gray-light: #F8F8F8;
+  --color-gray-medium: #CBCBCB;
+  --color-gray: #DEE9EA;
   --color-gray-dark: #444444;
 
   --color-orange: #FF5031;
 
-   --color-error: #BF1313;
+  --color-error: #BF1313;
 
   /* COLORS - VARIABLES */
   --color-primary: var(--color-green-dark);
@@ -33,7 +34,6 @@
 
   --color-accent: var(--color-black);
   --color-accent-text: var(--color-white);
-
   --color-on-hover: var(--color-primary);
 
   /* COLORS - INPUT */

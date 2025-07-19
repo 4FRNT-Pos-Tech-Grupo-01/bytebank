@@ -1,7 +1,7 @@
 import Modal from "@/components/modal"
 import StateControllerProvider from "@/contexts/state-controller"
-import Footer from "@/structure/footer"
-import Header from "@/structure/header"
+import Footer from "@/layouts/structure/footer"
+import Header from "@/layouts/structure/header"
 import "@/styles/globals.css"
 import type { AppProps } from "next/app"
 

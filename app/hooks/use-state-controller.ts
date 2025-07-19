@@ -9,7 +9,9 @@ function useStateController() {
     isLoggedIn,
     setIsLoggedIn,
     currentAuthModal,
-    setCurrentAuthModal
+    setCurrentAuthModal,
+    refreshExtract,
+    triggerRefresh
   } = useContext(StateControllerContext)
 
   const authModalStatus = useMemo(() => isAuthModalOpen, [isAuthModalOpen])
@@ -23,6 +25,8 @@ function useStateController() {
     setIsLoggedIn,
     selectedModal,
     setCurrentAuthModal,
+    refreshExtract,
+    triggerRefresh
   }
 }
 

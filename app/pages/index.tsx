@@ -1,10 +1,10 @@
-import AsideNav from "@/components/aside-nav"
-import DashboardHero from "@/components/dashboard-hero"
-import BankStatement from "@/components/bank-statement"
+import AsideNav from "@/layouts/blocks/aside-nav"
+import DashboardHero from "@/layouts/blocks/dashboard-hero"
+import BankStatement from "@/layouts/blocks/bank-statement"
 
 import { NextSeo } from "next-seo"
 import useStateController from "@/hooks/use-state-controller"
-import LoggedOutLayout from "@/components/logged-out-layout/logged-out-layout"
+import LoggedOutLayout from "@/layouts/blocks/logged-out-layout/logged-out-layout"
 
 export default function Home() {
   const {authStatus} = useStateController()

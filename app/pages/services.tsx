@@ -1,8 +1,8 @@
-import Services from '@/components/services'
-import DashboardHero from '@/components/dashboard-hero'
+import Services from '@/layouts/blocks/services'
+import DashboardHero from '@/layouts/blocks/dashboard-hero'
 import { NextSeo } from 'next-seo'
-import AsideNav from '@/components/aside-nav'
-import BankStatement from '@/components/bank-statement'
+import AsideNav from '@/layouts/blocks/aside-nav'
+import BankStatement from '@/layouts/blocks/bank-statement'
 import useStateController from '@/hooks/use-state-controller'
 
 export default function ServicesPage() {

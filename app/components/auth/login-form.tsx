@@ -1,22 +1,22 @@
-import { useState } from "react";
-import { AuthLayout } from "./auth-layout";
-import Input from "../input/Input";
-import { Button } from "../button/Button";
-import IlustracaoLogin from "@/assets/images/ilustracaoLogin.svg";
+import { useState } from "react"
+import { AuthLayout } from "./auth-layout"
+import IlustracaoLogin from "@/assets/images/ilustracaoLogin.svg"
+import Button from "../button"
+import Input from "../input"
 
 interface LoginFormProps {
-  onSubmit: (data: { email: string; password: string }) => void;
+  onSubmit: (data: { email: string; password: string }) => void
 }
 
 export function LoginForm({ onSubmit }: LoginFormProps) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
   const handleSubmit = () => {
     if (email && password) {
-      onSubmit({ email, password });
+      onSubmit({ email, password })
     }
-  };
+  }
 
   return (
     <AuthLayout
@@ -52,5 +52,5 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
         <Button label="Acessar" onClick={handleSubmit} centered />
       </div>
     </AuthLayout>
-  );
+  )
 }

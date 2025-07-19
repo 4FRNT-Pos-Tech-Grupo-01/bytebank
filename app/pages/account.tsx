@@ -1,7 +1,7 @@
-import AsideNav from "@/components/aside-nav"
+import AsideNav from "@/layouts/blocks/aside-nav"
 import { NextSeo } from "next-seo"
 import useStateController from "@/hooks/use-state-controller"
-import Account from "@/components/account"
+import Account from "@/layouts/blocks/account"
 
 export default function AccountPage() {
   const {authStatus} = useStateController()

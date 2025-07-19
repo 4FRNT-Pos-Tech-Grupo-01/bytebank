@@ -1,38 +1,38 @@
-import { useState } from "react";
-import { AuthLayout } from "./auth-layout";
-import Input from "../input/Input";
-import { Button } from "../button/Button";
-import IlustracaoCriacaoLogin from "@/assets/images/IlustraçãoCriacaoLogin.svg";
+import { useState } from "react"
+import { AuthLayout } from "./auth-layout"
+import IlustracaoCriacaoLogin from "@/assets/images/IlustraçãoCriacaoLogin.svg"
+import Button from "../button"
+import Input from "../input"
 
 interface RegisterFormProps {
-  onSubmit: (data: { name: string; email: string; password: string }) => void;
+  onSubmit: (data: { name: string; email: string; password: string }) => void
 }
 
 export function RegisterForm({ onSubmit }: RegisterFormProps) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
-  const [emailError, setEmailError] = useState("");
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [agreedToTerms, setAgreedToTerms] = useState(false)
+  const [emailError, setEmailError] = useState("")
 
   const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
-      setEmailError("Dado incorreto, Revise e digite novamente.");
-      return false;
+      setEmailError("Dado incorreto, Revise e digite novamente.")
+      return false
     } else {
-      setEmailError("");
-      return true;
+      setEmailError("")
+      return true
     }
-  };
+  }
 
   const handleSubmit = () => {
     if (name && email && password && agreedToTerms) {
-      onSubmit({ name, email, password });
+      onSubmit({ name, email, password })
     } else if (!agreedToTerms) {
-      alert("Você deve concordar com os termos para continuar.");
+      alert("Você deve concordar com os termos para continuar.")
     }
-  };
+  }
 
   return (
     <AuthLayout
@@ -50,7 +50,6 @@ export function RegisterForm({ onSubmit }: RegisterFormProps) {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-
         <Input
           label="Email"
           type="email"
@@ -58,11 +57,10 @@ export function RegisterForm({ onSubmit }: RegisterFormProps) {
           value={email}
           error={emailError}
           onChange={(e) => {
-            setEmail(e.target.value);
-            validateEmail(e.target.value);
+            setEmail(e.target.value)
+            validateEmail(e.target.value)
           }}
         />
-
         <Input
           label="Senha"
           type="password"
@@ -70,7 +68,6 @@ export function RegisterForm({ onSubmit }: RegisterFormProps) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-
         <div className="flex items-start gap-3 my-2">
           <input
             type="checkbox"
@@ -87,7 +84,6 @@ export function RegisterForm({ onSubmit }: RegisterFormProps) {
             conforme descrito na Política de Privacidade do banco.
           </label>
         </div>
-
         <Button
           label="Criar conta"
           onClick={handleSubmit}
@@ -96,5 +92,5 @@ export function RegisterForm({ onSubmit }: RegisterFormProps) {
         />
       </div>
     </AuthLayout>
-  );
+  )
 }

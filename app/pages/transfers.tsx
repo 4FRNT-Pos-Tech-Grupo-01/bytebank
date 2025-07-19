@@ -1,12 +1,13 @@
 import { NextSeo } from "next-seo"
-import AsideNav from "@/components/aside-nav"
-import DashboardHero from "@/components/dashboard-hero"
-import BankStatement from "@/components/bank-statement"
+import AsideNav from "@/layouts/blocks/aside-nav"
+import DashboardHero from "@/layouts/blocks/dashboard-hero"
+import BankStatement from "@/layouts/blocks/bank-statement"
 import useStateController from "@/hooks/use-state-controller"
-import TransactionCard from "@/components/transactions"
+import TransactionCard from "@/layouts/blocks/transactions"
 
 export default function TransfersPage() {
   const {authStatus} = useStateController()
+  const { refreshExtract } = useStateController()
 
   return (
     <>
@@ -18,7 +19,7 @@ export default function TransfersPage() {
             <DashboardHero />
             <TransactionCard />
           </div>
-          <BankStatement />
+          <BankStatement key={refreshExtract} />
         </div>
       )}
     </>
