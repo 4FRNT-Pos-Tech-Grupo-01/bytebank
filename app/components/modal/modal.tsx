@@ -1,9 +1,14 @@
 import useStateController from '@/hooks/use-state-controller'
 import { LoginForm, RegisterForm } from '../auth'
+import React from 'react'
 
 import Close from '@/assets/icons/close.svg'
 
-const Modal = () => {
+interface ModalProps {
+  children?: React.ReactNode
+}
+
+const Modal = ({ children }: ModalProps) => {
   const {
     selectedModal,
     setCurrentAuthModal,
@@ -29,27 +34,33 @@ const Modal = () => {
           <Close className='w-4 h-4' />
         </button>
         <div className="px-6 py-8">
-          {selectedModal === 'login' ? (
-            <>
-              <LoginForm onSubmit={() => {
-                setIsLoggedIn(true)
-                setIsAuthModalOpen(false)
-              }} />
-              <button
-                className="text-sm text-green underline"
-                onClick={() => {
-                  setCurrentAuthModal('subscribe')
-                }}
-              >
-                Não tem conta? Cadastre-se
-              </button>
-            </>
+          {children ? (
+            children
           ) : (
             <>
-              <RegisterForm onSubmit={() => setCurrentAuthModal('login')} />
-              <button className="text-sm text-green underline" onClick={() => setCurrentAuthModal('login') }>
-                Já tem conta? Faça login
-              </button>
+              {selectedModal === 'login' ? (
+                <>
+                  <LoginForm onSubmit={() => {
+                    setIsLoggedIn(true)
+                    setIsAuthModalOpen(false)
+                  }} />
+                  <button
+                    className="text-sm text-green underline"
+                    onClick={() => {
+                      setCurrentAuthModal('subscribe')
+                    }}
+                  >
+                    Não tem conta? Cadastre-se
+                  </button>
+                </>
+              ) : (
+                <>
+                  <RegisterForm onSubmit={() => setCurrentAuthModal('login')} />
+                  <button className="text-sm text-green underline" onClick={() => setCurrentAuthModal('login') }>
+                    Já tem conta? Faça login
+                  </button>
+                </>
+              )}
             </>
           )}
         </div>

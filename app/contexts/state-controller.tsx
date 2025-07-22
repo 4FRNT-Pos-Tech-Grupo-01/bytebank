@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react'
 
-interface IStateControllerContext {
+export interface IStateControllerContext {
   isAuthModalOpen: boolean
   setIsAuthModalOpen: (value: boolean) => void
   isLoggedIn: boolean
