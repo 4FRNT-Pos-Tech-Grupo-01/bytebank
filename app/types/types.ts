@@ -66,5 +66,19 @@ export interface IBankStatementItem {
 
 export interface IBankStatement {
   title: string
+  subtitle: string
   transactions: IBankStatementItem[]
+}
+
+interface ITransactionType {
+  label: string
+  value: string
+}
+
+export interface ITransaction {
+  title: string
+  transactionType: ITransactionType[]
+  placeholderInput: string
+  placeholderSelect: string
+  placeholderDate: string
 }

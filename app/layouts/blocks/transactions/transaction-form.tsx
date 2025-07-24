@@ -48,7 +48,7 @@ const TransactionForm = ({
         borderColor="blue"
         options={transactionType}
         placeholder={placeholderSelect}
-        className="mb-8 max-w-[21.875rem] h-10"
+        className="mb-8 max-w-[21.875rem]"
         onValueChange={setSelectedTransaction}
       />
       <div className='max-w-[9rem] md:max-w-[15.625rem]'>
