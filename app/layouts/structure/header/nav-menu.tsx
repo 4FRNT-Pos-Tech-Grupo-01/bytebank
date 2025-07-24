@@ -16,7 +16,7 @@ interface Properties {
   isMenuActive: boolean
   isProfileMenuActive: boolean
   openProfileMenu: () => void
-  openRegister?: () => void // nova prop
+  openRegister?: () => void
 }
 
 const NavMenu: React.FC<Properties> = ({

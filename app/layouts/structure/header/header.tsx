@@ -43,12 +43,6 @@ const Header = () => {
     })
   }, [])
 
-  // Handlers para abrir as modais
-  const handleOpenLogin = () => setShowLoginModal(true);
-  const handleOpenRegister = () => setShowRegisterModal(true);
-  const handleCloseLogin = () => setShowLoginModal(false);
-  const handleCloseRegister = () => setShowRegisterModal(false);
-
   return (
     <header
       className={twMerge(
@@ -76,25 +70,7 @@ const Header = () => {
           isMenuActive={isMenuActive}
           isProfileMenuActive={isProfileMenuActive}
           openProfileMenu={openProfileMenu}
-          openRegister={handleOpenRegister} // Abre modal de registro
         />
-        {/* Modais de Login e Registro */}
-        <Modal isOpen={showLoginModal} onClose={handleCloseLogin}>
-          <LoginForm onSubmit={logIn} />
-          <div className="mt-4 text-center">
-            <button className="text-sm text-green underline" onClick={() => { handleCloseLogin(); handleOpenRegister(); }}>
-              Não tem conta? Cadastre-se
-            </button>
-          </div>
-        </Modal>
-        <Modal isOpen={showRegisterModal} onClose={handleCloseRegister}>
-          <RegisterForm onSubmit={() => { setShowRegisterModal(false); setIsLoggedIn(true); }} />
-          <div className="mt-4 text-center">
-            <button className="text-sm text-green underline" onClick={() => { handleCloseRegister(); handleOpenLogin(); }}>
-              Já tem conta? Faça login
-            </button>
-          </div>
-        </Modal>
       </div>
     </header>
   )
