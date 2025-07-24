@@ -143,6 +143,7 @@ export const footerData = {
 
 export const bankStatementData = {
   title: 'Extrato',
+  subtitle: 'Editar transações:',
   transactions: [
     {
       date: '18/06/2025',
@@ -231,6 +232,7 @@ export const transactionsData = {
   title: 'Nova transação',
   placeholderSelect: 'Selecione o tipo de transação',
   placeholderInput: '00.00',
+  placeholderDate: 'Selecione a data',
   transactionType: [
     {
       label: 'Depósito',
