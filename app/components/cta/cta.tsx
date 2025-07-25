@@ -26,7 +26,7 @@ const Cta: React.FC<ICtaProperties> = ({className = '', text, variant = 'green',
   return (
     <button
       className={twMerge( className, ctaVariants({variant}))}
-      aria-label={text}
+      aria-label={props['aria-label'] || text}
       onClick={onClick}
       {...props}
     >

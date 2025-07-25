@@ -28,7 +28,7 @@ const Account = () => {
       <Graphism className='absolute bottom-0 left-0 w-[9rem] md:w-[11.25rem] h-auto' />
       <Graphism className='absolute top-0 right-0 w-[9rem] md:w-[11.25rem] h-auto rotate-180' />
       <div className='relative z-10 flex flex-col gap-5'>
-        <h2 className='text-[1.5625rem] font-semibold text-black'>{title}</h2>
+        <h1 className='text-[1.5625rem] font-semibold text-black'>{title}</h1>
         <div className='flex flex-col lg:flex-row-reverse gap-8'>
           <AccountForm {...accountData as IAccount} />
           <picture className='block w-full lg:w-1/2'>

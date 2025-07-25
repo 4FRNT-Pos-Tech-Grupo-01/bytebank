@@ -81,10 +81,13 @@ const CustomSelect = ({
   defaultValue,
   className = "",
   borderColor = "blue",
+  label,
+  id,
 }: ICustomSelect) => {
   const [isOpen, setIsOpen] = useState(false)
   const [selectedValue, setSelectedValue] = useState(defaultValue || "")
   const selectRef = useRef<HTMLDivElement>(null)
+  const uniqueId = id || `select-${Math.random().toString(36).slice(2, 9)}`
 
   const selectedOption = selectedValue ? options.find((option) => option.value === selectedValue) : null
 
@@ -124,12 +127,20 @@ const CustomSelect = ({
 
   return (
     <div className={`relative w-full ${className}`} ref={selectRef}>
+      {label && (
+        <label htmlFor={uniqueId} className="block text-sm font-bold text-gray-700 mb-2">
+          {label}
+        </label>
+      )}
       <button
         type="button"
+        id={uniqueId}
         onClick={handleOpenSelect}
         onKeyDown={handleKeyDown}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
+        aria-label={label || placeholder}
+        aria-describedby={`${uniqueId}-description`}
         className={selectButtonVariants({ borderColor, isOpen })}
       >
         <span className={`text-base ${selectedOption ? "text-gray-700" : "text-gray-500"}`}>
@@ -140,7 +151,7 @@ const CustomSelect = ({
 
       {isOpen && (
         <div className={selectDropdownVariants({ borderColor })}>
-          <ul role="listbox">
+          <ul role="listbox" aria-labelledby={uniqueId}>
             {options.map((option, index) => (
               <li key={option.value}>
                 <button
@@ -160,6 +171,9 @@ const CustomSelect = ({
           </ul>
         </div>
       )}
+      <span id={`${uniqueId}-description`} className="sr-only">
+        Use as setas para cima e para baixo para navegar pelas opções
+      </span>
     </div>
   )
 }

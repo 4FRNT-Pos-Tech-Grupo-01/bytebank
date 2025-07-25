@@ -36,6 +36,8 @@ export interface ICustomSelect {
   defaultValue?: string
   className?: string
   borderColor?: "blue" | "green"
+  label?: string
+  id?: string
 }
 
 export interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {

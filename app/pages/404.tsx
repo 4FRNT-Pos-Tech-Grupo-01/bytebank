@@ -25,10 +25,18 @@ export default function NotFoundPage() {
             href={cta.url}
             target={cta.blank ? '_blank' : '_self'}
             className="px-2 py-3 bg-orange text-white hover:bg-green-dark font-semibold rounded-lg hover:shadow-lg transition-all duration-200"
+            aria-label={`${cta.text} - ${cta.blank ? 'abre em nova aba' : ''}`}
           >
             {cta.text}
           </Link>
-          <NotFoundImage className='w-full md:w-[29.375rem] h-auto md:h-[22.125rem] pt-3' />
+          <NotFoundImage className='w-full md:w-[29.375rem] h-auto md:h-[22.125rem] pt-3' aria-hidden="true" />
+          <Link 
+            href='/' 
+            target='_self' 
+            className='opacity-100 hover:opacity-70 transition-opacity duration-200'
+            aria-label="Voltar para a página inicial"
+          >
+          </Link>
         </div>
       </div>
     </>

@@ -16,6 +16,7 @@ interface Properties {
   isMenuActive: boolean
   isProfileMenuActive: boolean
   openProfileMenu: () => void
+  openRegister?: () => void
 }
 
 const NavMenu: React.FC<Properties> = ({
@@ -47,7 +48,8 @@ const NavMenu: React.FC<Properties> = ({
         <>
           <div className='w-full flex items-center justify-end gap-4'>
             <span className='hidden md:block'>{`${firstName} ${lastName}`}</span>
-            <button onClick={openProfileMenu}>
+            <button onClick={openProfileMenu} aria-label="Abrir menu do perfil do usuário">
+              <span className="sr-only">Abrir menu de perfil</span>
               <Avatar className='w-10 h-10' />
             </button>
           </div>
@@ -57,7 +59,8 @@ const NavMenu: React.FC<Properties> = ({
               isMenuActive ? 'translate-x-0' : '-translate-x-full',
             )}
           >
-            <button className='absolute top-4 right-4' onClick={closeMenu}>
+            <button className='absolute top-4 right-4' onClick={closeMenu} aria-label="Fechar menu">
+              <span className="sr-only">Fechar menu</span>
               <Close className='w-4 h-4' />
             </button>
             <ul className='flex flex-col'>
@@ -66,6 +69,7 @@ const NavMenu: React.FC<Properties> = ({
                   <Link
                     className='block w-full text-lg text-center text-black' href={loggedInItem.url}
                     onClick={closeMenu}
+                    aria-label={`Navegar para ${loggedInItem.text}`}
                   >
                     {loggedInItem.text}
                   </Link>
@@ -79,7 +83,8 @@ const NavMenu: React.FC<Properties> = ({
               isProfileMenuActive ? 'translate-x-0 md:translate-y-0 md:opacity-100 md:pointer-events-auto z-20' : 'translate-x-full md:translate-0 md:translate-y-2 md:opacity-0 md:pointer-events-none -z-10',
             )}
           >
-            <button className='absolute top-4 right-4' onClick={closeProfileMenu}>
+            <button className='absolute top-4 right-4' onClick={closeProfileMenu} aria-label="Fechar menu de perfil">
+              <span className="sr-only">Fechar menu de perfil</span>
               <Close className='w-4 h-4' />
             </button>
             <ul className='flex flex-col'>
@@ -88,6 +93,7 @@ const NavMenu: React.FC<Properties> = ({
                   <Link
                     className='block w-full text-lg text-center text-white' href={profileItem.url}
                     onClick={closeProfileMenu}
+                    aria-label={`Navegar para ${profileItem.text}`}
                   >
                     {profileItem.text}
                   </Link>
@@ -101,6 +107,7 @@ const NavMenu: React.FC<Properties> = ({
                     setIsLoggedIn(false)
                     router.push('/')
                   }}
+                  aria-label="Sair da conta"
                 >
                   {profileMenu[2].text}
                 </button>
@@ -115,7 +122,8 @@ const NavMenu: React.FC<Properties> = ({
             isMenuActive ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
           )}
         >
-          <button className='md:hidden absolute top-4 right-4' onClick={closeMenu}>
+          <button className='md:hidden absolute top-4 right-4' onClick={closeMenu} aria-label="Fechar menu">
+            <span className="sr-only">Fechar menu</span>
             <Close className='w-4 h-4' />
           </button>
           <ul className='flex flex-col md:flex-row md:items-center md:gap-10'>
@@ -124,6 +132,7 @@ const NavMenu: React.FC<Properties> = ({
                 <Link
                   className='block text-lg w-full md:w-fit text-center md:font-semibold translate-0 hover:-translate-y-2 duration-200 transition-all' href={loggedOutItem.url}
                   onClick={closeMenu}
+                  aria-label={`Navegar para ${loggedOutItem.text}`}
                 >
                   {loggedOutItem.text}
                 </Link>

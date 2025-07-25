@@ -40,6 +40,7 @@ const Footer = () => {
                 target={serviceLink.blank ? '_blank' : '_self'}
                 className='block translate-x-0 hover:translate-x-3 transition-all duration-200 w-fit font-light'
               >
+                <span className="sr-only">Ir para {serviceLink.text}</span>
                 {serviceLink.text}
               </Link>
             </li>
@@ -56,6 +57,7 @@ const Footer = () => {
                 target={contactLink.blank ? '_blank' : '_self'}
                 className='block translate-x-0 hover:translate-x-3 transition-all duration-200 w-fit font-light'
               >
+                <span className="sr-only">Ir para {contactLink.text}</span>
                 {contactLink.text}
               </Link>
             </li>
@@ -67,6 +69,7 @@ const Footer = () => {
           </li>
           <li className='w-fit'>
             <Link href='/' target='_self' className='opacity-100 hover:opacity-70 transition-opacity duration-200'>
+              <span className="sr-only">Ir para a página inicial</span>
               <Logo className='w-[9.125rem] h-8' />
             </Link>
           </li>

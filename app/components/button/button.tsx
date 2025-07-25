@@ -42,6 +42,7 @@ const Button = ({
       style={backgroundColor ? { backgroundColor } : undefined}
       onClick={onClick}
       disabled={disabled}
+      aria-label={props['aria-label']}
       {...props}
     >
       {label}

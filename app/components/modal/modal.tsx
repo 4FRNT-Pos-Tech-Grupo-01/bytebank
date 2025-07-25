@@ -27,7 +27,7 @@ const Modal = ({ children }: ModalProps) => {
         className="relative bg-gray-light lg:rounded-2xl w-full lg:w-[49.5rem] h-fit shadow-2xl animate-showup lg:my-20"
       >
         <button
-          aria-label="Close modal"
+          aria-label="Fechar modal"
           onClick={() => setIsAuthModalOpen(false)}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl z-10 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
         >
