@@ -5,14 +5,15 @@ const config: StorybookConfig = {
     "../stories/**/*.mdx",
     "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../app/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    "../components/**/*.stories.@(js|jsx|mjs|ts|tsx)"
+    "../components/**/*.stories.@(js|jsx|mjs|ts|tsx)",  
+     "../layouts/blocks/**/*.stories.@(js|jsx|mjs|ts|tsx)"
+
   ],
   "addons": [
     "@chromatic-com/storybook",
     "@storybook/addon-docs",
     "@storybook/addon-a11y",
     "@storybook/addon-vitest",
-    "@storybook/addon-viewport"
   ],
   "framework": {
     "name": "@storybook/nextjs-vite",

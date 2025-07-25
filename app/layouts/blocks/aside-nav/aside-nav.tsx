@@ -18,8 +18,8 @@ const AsideNav = () => {
               key={`item-${index}`}
               className={
                 twMerge(
-                  'border-b lg:not-last:border-b hover:border-green hover:text-green min-w-28',
-                  router.pathname === item.url ? 'border-green text-green' : 'border-transparent lg:border-black',
+                  'border-b lg:not-last:border-b hover:border-green hover:text-green min-w-28 font-medium',
+                  router.pathname === item.url ? 'border-green text-green font-bold' : 'border-transparent lg:border-black',
                 )
               }
             >

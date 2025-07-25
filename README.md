@@ -55,6 +55,30 @@ npm run dev
 open [http://localhost:3000](http://localhost:3000) with your browser to see the
 result.
 
+## Project Architecture Overview
+
+This section outlines the folder structure of the project located at the `app/` directory. Each folder within it serves a specific purpose, supporting a modular, scalable, and maintainable codebase.
+
+````
+app/
+├── assets/
+│   ├── icons/
+│   └── images/
+├── components/
+│   └── */
+├── contexts/
+├── data/
+├── hooks/
+├── layouts/
+│   ├── blocks/
+│   └── structure/
+├── pages/
+├── public/
+├── styles/
+├── types/
+└── utils/
+````
+
 ## Storybook
 
 to view storybook, please run the script at "/app" directory:

@@ -4,6 +4,7 @@ import { transactionsData } from '@/data/global-data'
 
 import Graphism from '@/assets/images/graphism-blue.svg'
 import BgImage from '@/assets/images/transaction-image.svg'
+import { ITransaction } from '@/types/types'
 
 const TransactionCard = () => {
 
@@ -12,7 +13,7 @@ const TransactionCard = () => {
     transactionType,
     placeholderInput,
     placeholderSelect,
-  } = transactionsData
+  } = transactionsData as ITransaction
 
 
   return (
