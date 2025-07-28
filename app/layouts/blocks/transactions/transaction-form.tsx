@@ -55,7 +55,7 @@ const TransactionForm = ({
         placeholder={placeholderSelect}
         className="mb-8 max-w-[21.875rem]"
         onValueChange={setSelectedTransaction}
-        label="Tipo de transação"
+        arial-label="Tipo de transação"
         id="transaction-type"
       />
       <div className="max-w-[9rem] md:max-w-[15.625rem]">
