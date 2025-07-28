@@ -29,6 +29,12 @@ const Socials: React.FC<Properties> = ({data}) => {
       {data.map((socialLink, index) => (
         <li key={`social-link-${index}`}>
           <Link href={socialLink.url} target='_blank' className='opacity-100 hover:opacity-70 transition-opacity duration-200'>
+            <span className="sr-only">
+              {socialLink.type === 'instagram' && 'Ir para o perfil do Instagram'}
+              {socialLink.type === 'whatsapp' && 'Ir para o perfil do WhatsApp'}
+              {socialLink.type === 'youtube' && 'Ir para o canal do YouTube'}
+              {!['instagram', 'whatsapp', 'youtube'].includes(socialLink.type) && 'Ir para o perfil social'}
+            </span>
             {socialIconSelector(socialLink.type)}
           </Link>
         </li>

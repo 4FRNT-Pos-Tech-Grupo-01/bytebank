@@ -28,7 +28,7 @@ export const LoggedOutLayout = () => {
     <section>
       <div id='about' className='grid grid-cols-1 lg:grid-cols-12 gap-y-10 gap-x-5'>
         <div className='lg:col-span-5 flex items-center justify-center'>
-          <p className='max-w-[27.125rem] !leading-tight font-semibold text-black text-center lg:text-left text-[1.5625rem] md:text-[1.75rem]'>{description}</p>
+          <h1 className='max-w-[27.125rem] !leading-tight font-semibold text-black text-center lg:text-left text-[1.5625rem] md:text-[1.75rem]'>{description}</h1>
         </div>
         <picture className='block lg:col-span-7'>
           <LoggedOutImage className='w-full h-auto object-contain' />

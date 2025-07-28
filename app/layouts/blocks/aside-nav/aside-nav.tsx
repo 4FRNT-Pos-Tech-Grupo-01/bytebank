@@ -23,9 +23,11 @@ const AsideNav = () => {
                 )
               }
             >
-              <Link href={item.url}
+               <Link href={item.url}
                 target={item.blank ? '_blank' : '_self'}
                 className='block text-center py-4'
+                aria-label={`Navegar para ${item.text}`}
+
               >
                 {item.text}
               </Link>

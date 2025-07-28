@@ -6,9 +6,11 @@ import Input from "../input"
 
 interface RegisterFormProps {
   onSubmit: (data: { name: string; email: string; password: string }) => void
+  formId?: string
 }
 
-export function RegisterForm({ onSubmit }: RegisterFormProps) {
+export function RegisterForm({ onSubmit, formId }: RegisterFormProps) {
+  const uniqueId = formId || `register-form-${Math.random().toString(36).slice(2, 10)}`
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -45,14 +47,18 @@ export function RegisterForm({ onSubmit }: RegisterFormProps) {
     >
       <div className="flex flex-col gap-4">
         <Input
-          label="Nome"
+          label="Nome completo"
+          id={`${uniqueId}-name`}
+          autoComplete="name"
           placeholder="Digite seu nome completo"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <Input
           label="Email"
+          id={`${uniqueId}-email`}
           type="email"
+          autoComplete="email"
           placeholder="Digite seu email"
           value={email}
           error={emailError}
@@ -63,7 +69,9 @@ export function RegisterForm({ onSubmit }: RegisterFormProps) {
         />
         <Input
           label="Senha"
+          id={`${uniqueId}-password`}
           type="password"
+          autoComplete="new-password"
           placeholder="Digite sua senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -71,14 +79,17 @@ export function RegisterForm({ onSubmit }: RegisterFormProps) {
         <div className="flex items-start gap-3 my-2">
           <input
             type="checkbox"
-            id="terms"
+            id={`${uniqueId}-terms`}
             checked={agreedToTerms}
             onChange={(e) => setAgreedToTerms(e.target.checked)}
             className="mt-1 w-4 h-4 accent-[var(--color-green)] border-[var(--color-green)] border-2 rounded focus:ring-green-500"
+            aria-describedby={`${uniqueId}-terms-description`}
+            required
           />
           <label
-            htmlFor="terms"
+            htmlFor={`${uniqueId}-terms`}
             className="text-sm text-gray-600 leading-relaxed cursor-pointer"
+            id={`${uniqueId}-terms-description`}
           >
             Li e estou ciente quanto às condições de tratamento dos meus dados
             conforme descrito na Política de Privacidade do banco.
@@ -89,6 +100,7 @@ export function RegisterForm({ onSubmit }: RegisterFormProps) {
           onClick={handleSubmit}
           disabled={!agreedToTerms}
           centered
+          aria-label={agreedToTerms ? "Criar nova conta" : "Aceite os termos para criar conta"}
         />
       </div>
     </AuthLayout>

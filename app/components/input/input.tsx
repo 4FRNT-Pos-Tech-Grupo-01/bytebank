@@ -16,18 +16,27 @@ const Input = ({ className, error, label, id, labelStyle, ...props }: IInput) =>
   return (
     <div className="flex flex-col gap-2 w-full">
       {label && (
-        <label className={`block text-sm font-bold text-gray-700 ${labelStyle}`}>
+        <label htmlFor={id} className={`block text-sm font-bold text-gray-700 ${labelStyle}`}>
           {label}
         </label>
       )}
       <input
         className={`${inputVariants({ error: !!error })} ${className ?? ""}`}
         id={id}
+        autoComplete={props.autoComplete}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${id}-error` : undefined}
         {...props}
       />
 
       {error && (
-        <span className="text-xs" style={{ color: "var(--color-error)" }}>
+        <span 
+          className="text-xs" 
+          style={{ color: "var(--color-error)" }}
+          id={`${id}-error`}
+          role="alert"
+          aria-live="polite"
+        >
           {error}
         </span>
       )}
