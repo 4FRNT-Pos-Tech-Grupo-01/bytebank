@@ -52,9 +52,10 @@ const TransactionForm = ({
         onValueChange={setSelectedTransaction}
       />
       <div className='max-w-[9rem] md:max-w-[15.625rem]'>
+        <div className='w-full'>
         <Input
           placeholder={placeholderInput}
-          className="border-[var(--color-green-dark)] mb-8 bg-white"
+          className="border-[var(--color-green-dark)] mb-8 bg-white text-center md:text-left"
           id="price"
           label="Valor"
           labelStyle="text-white font-semibold text-center md:text-left lg:text-left"
@@ -62,16 +63,20 @@ const TransactionForm = ({
           value={amount}
           onChange={e => setAmount(e.target.value)}
         />
+        </div>
       </div>
       <div className='max-w-[9rem] md:max-w-[15.625rem]'>
+        <div className='w-full'>
         <Button
           label="Concluir transação"
           onClick={() => {}}
           primary
-          className="w-full bg-[var(--color-green-dark)] py-0"
+          className="bg-[var(--color-green-dark)] py-0 md:min-w-[200px]"
           type="submit"
           disabled={Number(amount) <= 0  || !selectedTransaction}
+          fullWidth
         />
+        </div>
       </div>
 
     </form>
