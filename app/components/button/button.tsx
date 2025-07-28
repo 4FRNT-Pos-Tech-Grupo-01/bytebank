@@ -20,7 +20,7 @@ const Button = ({
 
   const sizeClasses = {
     small: 'text-sm px-3 py-2',
-    medium: 'text-sm px-6 py-3 h-[48px]',
+    medium: 'text-sm px-6 py-3 md:h-[48px]',
     large: 'text-lg px-6 py-4',
   }[size]
 

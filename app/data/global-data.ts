@@ -231,7 +231,7 @@ export const dashboardHeroData = {
 export const transactionsData = {
   title: 'Nova transação',
   placeholderSelect: 'Selecione o tipo de transação',
-  placeholderInput: '00.00',
+  placeholderInput: '00,00',
   placeholderDate: 'Selecione a data',
   transactionType: [
     {

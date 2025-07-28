@@ -61,7 +61,7 @@ const selectOptionVariants = tv({
   variants: {
     borderColor: {
       green: "hover:bg-[var(--color-green-light)] hover:font-bold hover:text-[var(--color-gray-dark)]",
-      blue: "hover:bg-[var(--color-blue-light)] hover:font-bold hover:text-[var(--color-gray-dark)]",
+      blue: "hover:bg-[var(--color-gray)] hover:font-bold hover:text-[var(--color-gray-dark)]",
     },
     hasTopBorder: {
       true: "border-t border-gray-200",
