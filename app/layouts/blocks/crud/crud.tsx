@@ -13,7 +13,10 @@ import DeleteIcon from '@/assets/icons/delete.svg';
 import Cta from '@/components/cta';
 import CustomSelect from '@/components/select';
 import Input from '@/components/input';
-import { formatDate, formatMonth } from '@/utils/date';
+import { formatDate, formatMonth, toInputDateFormat } from '@/utils/date';
+import { getBalanceByBankStatement } from '@/utils/bank-statement-calc';
+
+import {toast} from 'react-toastify'
 
 const Crud = () => {
   const { subtitle, transactions } = bankStatementData as IBankStatement;
@@ -35,13 +38,20 @@ const Crud = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [currentEditing, setCurrentEditing] = useState<number>(-1);
 
+  const calculatedBalance = getBalanceByBankStatement(getValue())
+  
+
   useEffect(() => {
     setCurrentStatement(getValue());
   }, [storedValue]);
 
   const editStatementItem = (index: number) => {
-    setIsEditing(true);
+  setIsEditing(true);
     setCurrentEditing(index);
+    const item = currentStatement[index];
+   setDate(toInputDateFormat(item.date));
+    setAmount(item.amount.toString());
+    setSelectedTransaction(item.type);
   };
 
   const deleteStatementItem = (index: number) => {
@@ -53,6 +63,13 @@ const Crud = () => {
 
     if (currentEditing === -1) return;
     const updatedStatement = [...currentStatement];
+
+    const isInsufficientBalance = () => selectedTransaction === 'transfer' && (calculatedBalance - Number(amount)) < 0
+    if (isInsufficientBalance()) {
+      toast.warning('Saldo insuficiente');
+      return;
+    }
+
     updatedStatement[currentEditing] = {
       type: selectedTransaction,
       month: formatMonth(date),
