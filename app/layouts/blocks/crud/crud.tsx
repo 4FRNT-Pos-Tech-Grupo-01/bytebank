@@ -56,6 +56,7 @@ const Crud = () => {
 
   const deleteStatementItem = (index: number) => {
     setValue(currentStatement.filter((_, i) => i !== index));
+    toast.success('Transação excluída com sucesso');
   };
 
   const handleSave = (e: React.FormEvent) => {
@@ -79,6 +80,7 @@ const Crud = () => {
     setValue(updatedStatement);
     setCurrentEditing(-1);
     setIsEditing(false);
+    toast.success('Transação atualizada com sucesso');
   };
 
   return (
