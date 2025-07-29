@@ -30,7 +30,8 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
         <Input
           label="Email"
           type="email"
-          id="email"
+          id="login-email"
+          autoComplete="email"
           placeholder="Digite seu email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -38,7 +39,8 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
         <Input
           label="Senha"
           type="password"
-          id="password"
+          id="login-password"
+          autoComplete="current-password"
           placeholder="Digite sua senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -47,9 +49,15 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
           <Button
             variant="link"
             label="Esqueci a senha!"
+            aria-label="Recuperar senha esquecida"
           />
         </div>
-        <Button label="Acessar" onClick={handleSubmit} centered />
+        <Button 
+          label="Acessar" 
+          onClick={handleSubmit} 
+          centered 
+          aria-label="Fazer login na conta"
+        />
       </div>
     </AuthLayout>
   )
