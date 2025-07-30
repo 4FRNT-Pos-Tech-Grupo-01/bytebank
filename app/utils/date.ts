@@ -49,3 +49,11 @@ export const getCurrentDate = new Intl.DateTimeFormat('pt-BR', {
   month: '2-digit',
   year: 'numeric',
 }).format(today)
+
+
+export const toInputDateFormat = (date: string) => {
+  // Espera "dd/MM/yyyy"
+  const [day, month, year] = date.split('/');
+  if (!day || !month || !year) return '';
+  return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+};
