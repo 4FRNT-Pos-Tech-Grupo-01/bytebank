@@ -2,13 +2,17 @@ import { useState } from 'react';
 
 import useLocalStorage from '@/hooks/use-local-storage';
 
-import { TransactionFormProps } from './types';
-import useStateController from '@/hooks/use-state-controller';
-import { getCurrentMonth, getCurrentDateShort } from '@/utils/date';
-import CustomSelect from '@/components/select';
-import Input from '@/components/input';
-import Button from '@/components/button';
-import { IBankStatementItem } from '@/types/types';
+import { TransactionFormProps } from './types'
+import useStateController from '@/hooks/use-state-controller'
+import { getCurrentMonth, getCurrentDateShort } from '@/utils/date'
+import CustomSelect from '@/components/select'
+import Input from '@/components/input'
+import Button from '@/components/button'
+import { IBankStatement, IBankStatementItem } from '@/types/types'
+import { getBalanceByBankStatement } from '@/utils/bank-statement-calc'
+import { bankStatementData } from '@/data/global-data'
+
+import {toast} from 'react-toastify'
 
 const TransactionForm = ({
   transactionType,
@@ -21,11 +25,29 @@ const TransactionForm = ({
   );
   const { triggerRefresh } = useStateController();
 
-  const [selectedTransaction, setSelectedTransaction] = useState<string>('');
-  const [amount, setAmount] = useState<string>('');
+  const { transactions } = bankStatementData as IBankStatement
+  const { getValue: storedBalance } = useLocalStorage('statement', transactions)
+  const calculatedBalance = getBalanceByBankStatement(storedBalance())
+
+
+  const [selectedTransaction, setSelectedTransaction] = useState<string>('')
+  const [amount, setAmount] = useState<string>('')
+
+
+  const isInsufficientBalance = () =>
+  selectedTransaction === 'transfer' && (calculatedBalance - Number(amount)) < 0
+
+  function showInsufficientBalanceMessage() {
+    toast.warning('Saldo insuficiente')
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (isInsufficientBalance()) {
+      showInsufficientBalanceMessage()
+      return
+    }
 
     const newTransaction = {
       type: selectedTransaction,
@@ -34,14 +56,12 @@ const TransactionForm = ({
       date: getCurrentDateShort,
     } as IBankStatementItem;
 
-    setValue([...storedValue, newTransaction]);
-
-    // Use context for bank statement update
-    triggerRefresh();
-
-    setSelectedTransaction('');
-    setAmount('');
-  };
+    setValue([...storedValue, newTransaction])
+    toast.success('Transação realizada com sucesso!')
+    triggerRefresh()
+    setSelectedTransaction('')
+    setAmount('')
+  }
 
   return (
     <form
