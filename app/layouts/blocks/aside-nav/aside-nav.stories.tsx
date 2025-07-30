@@ -3,7 +3,7 @@ import AsideNav from './aside-nav'
 import React from 'react'
 
 const meta: Meta<typeof AsideNav> = {
-    title: 'Blocos/AsideNav',
+    title: 'Components/AsideNav',
     component: AsideNav,
     tags: ['autodocs'],
     parameters: {
