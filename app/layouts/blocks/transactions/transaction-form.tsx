@@ -65,7 +65,7 @@ const TransactionForm = ({
 
   return (
     <form
-      className="flex flex-col items-center lg:items-start md:items-start z-2"
+      className="relative flex flex-col items-center lg:items-start md:items-start z-10"
       onSubmit={handleSubmit}
       aria-label="Formulário de transação bancária"
     >

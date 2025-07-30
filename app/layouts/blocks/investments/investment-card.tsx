@@ -12,8 +12,8 @@ const InvestmentCard = () => {
 
   return (
     <InvestmentCardLayout>
-      <Graphism className='absolute bottom-0 left-0 w-[9rem] md:w-[11.25rem] h-auto' />
-      <Graphism className='absolute top-0 right-0 w-[9rem] md:w-[11.25rem] h-auto rotate-180' />
+      <Graphism className='absolute bottom-0 right-0 md:right-auto md:left-0 w-[9rem] md:w-[11.25rem] h-auto' />
+      <Graphism className='absolute top-0 left-0 md:left-auto md:right-0 w-[9rem] md:w-[11.25rem] h-auto rotate-180' />
       <div className="relative">
         <InvestmentHeader />
         <InvestmentRates />

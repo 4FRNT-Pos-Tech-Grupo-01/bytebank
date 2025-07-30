@@ -29,8 +29,8 @@ const DashboardHero = () => {
 
   return (
     <section className="relative flex flex-col bg-primary p-8 pb-7 pr-30 rounded-lg min-h-100 md:items-start md:flex-row sm:items-center xs:items-center overflow-hidden">
-      <Graphism className='lg:hidden absolute bottom-0 left-0 w-[9rem] md:w-[11.25rem] h-auto' />
-      <Graphism className='lg:hidden absolute top-0 right-0 w-[9rem] md:w-[11.25rem] h-auto rotate-180' />
+      <Graphism className='lg:hidden absolute bottom-0 right-0 md:right-auto md:left-0 w-[9rem] md:w-[11.25rem] h-auto' />
+      <Graphism className='lg:hidden absolute top-0 left-0 md:left-auto md:right-0 w-[9rem] md:w-[11.25rem] h-auto rotate-180' />
       <div className='flex-1'>
         <h1 className="font-bold text-white text-2xl mb-6">{`Olá, ${firstName}! :)`}</h1>
         <span className="text-white text-sm">{getCurrentDate}</span>
@@ -39,8 +39,8 @@ const DashboardHero = () => {
       <div className="flex flex-col mt-10 lg:mt-24 min-w-[11.375rem]">
         <div className="flex items-center gap-6">
           <h2 className="font-semibold text-white text-xl">{amountLabel}</h2>
-          <button 
-            className='relative' 
+          <button
+            className='relative'
             onClick={() => setIsAmountVisible(!isAmountVisible)}
             aria-label={isAmountVisible ? "Ocultar saldo da conta" : "Mostrar saldo da conta"}
             aria-pressed={!isAmountVisible}

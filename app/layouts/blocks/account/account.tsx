@@ -25,8 +25,8 @@ const Account = () => {
 
   return (
     <section className='relative min-h-[45.625rem] lg:min-h-[33rem] bg-gray-medium rounded-lg overflow-hidden p-5 md:px-[4.375rem] md:py-8 lg:px-8'>
-      <Graphism className='absolute bottom-0 left-0 w-[9rem] md:w-[11.25rem] h-auto' />
-      <Graphism className='absolute top-0 right-0 w-[9rem] md:w-[11.25rem] h-auto rotate-180' />
+      <Graphism className='absolute bottom-0 right-0 md:right-auto md:left-0 w-[9rem] md:w-[11.25rem] h-auto' />
+      <Graphism className='absolute top-0 left-0 md:left-auto md:right-0 w-[9rem] md:w-[11.25rem] h-auto rotate-180' />
       <div className='relative z-10 flex flex-col gap-5'>
         <h1 className='text-[1.5625rem] font-semibold text-black'>{title}</h1>
         <div className='flex flex-col lg:flex-row-reverse gap-8'>
